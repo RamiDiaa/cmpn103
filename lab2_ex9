@@ -1,0 +1,78 @@
+
+
+#include <iostream>
+using namespace std;
+
+
+bool RemoveDuplicates(int* a, int m, int*& b, int& n) {
+	b[0] = a[0];
+	int flag = 0;
+	for (int i = 1; i < m; i++) {
+		flag = 0;
+		for (int j = 0; j < n; j++) {
+			if (a[i] == b[j]) {
+				flag = 1;
+
+			}
+		}
+		if (flag == 0) {
+			n += 1;
+			b[n - 1] = a[i];
+			cout << "b[i] " << b[n - 1] << endl;
+			flag = 0;
+		}
+	}
+	return false;
+}
+
+
+
+int main() {
+	/*
+	int m;
+	cin >> m;
+	int* a = NULL;
+	a = new int[m];
+	for (int i = 0; i < m; i++) {
+		a[i] = (2 + i) * i;
+		cout << a[i];
+	}
+	cout << a[0];
+	a = NULL;
+	*/
+
+	int m;
+	cin >> m;
+
+	int* a = NULL;
+	a = new int[m];
+
+	for (int i = 0; i < m; i++) {
+		cin >> a[i];
+		cout << "a[i] " << a[i] << endl;
+	}
+
+
+
+	int n = 1;
+	int* b = NULL;
+	b = new int[n];
+
+	bool c = RemoveDuplicates(a, m, b, n);
+
+	cout << " ////////////////////" << endl;
+	for (int i = 0; i < m; i++) {
+		cout << "a[i] " << a[i] << endl;
+	}
+
+
+	// printing b []
+	cout << " ////////////////////" << endl;
+	for (int i = 0; i < n; i++) {
+		cout << "b[i] " << b[i] << endl;
+	}
+
+	return 0;
+}
+
+
