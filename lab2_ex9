@@ -1,26 +1,50 @@
-
-
 #include <iostream>
 using namespace std;
 
 
-bool RemoveDuplicates(int* a, int m, int*& b, int& n) {
-	b[0] = a[0];
+bool RemoveDuplicates(int* a, int m, int* &b, int &n) {
+
 	int flag = 0;
+	int returnflag = 0;
+	
+	int l = 1;
+	int* y = new int[l];
+	y[0] = a[0];
+	
+	
+	
 	for (int i = 1; i < m; i++) {
 		flag = 0;
-		for (int j = 0; j < n; j++) {
-			if (a[i] == b[j]) {
+		for (int j = 0; j < l; j++) {
+			if (a[i] == y[j]) {
 				flag = 1;
+				returnflag = 1;
 
 			}
 		}
 		if (flag == 0) {
-			n += 1;
-			b[n - 1] = a[i];
-			cout << "b[i] " << b[n - 1] << endl;
+			l += 1;
+			y[l - 1] = a[i];
 			flag = 0;
 		}
+	}
+
+	
+	//             y = b;
+	n = l;
+	for (int i = 0; i < n; i++) {
+		b[i] = y[i];
+	}
+
+
+
+
+
+
+	//delete [] y;
+	//y = NULL;
+	if (returnflag == 1) {
+		return true;
 	}
 	return false;
 }
@@ -28,51 +52,42 @@ bool RemoveDuplicates(int* a, int m, int*& b, int& n) {
 
 
 int main() {
-	/*
-	int m;
-	cin >> m;
-	int* a = NULL;
-	a = new int[m];
-	for (int i = 0; i < m; i++) {
-		a[i] = (2 + i) * i;
-		cout << a[i];
-	}
-	cout << a[0];
-	a = NULL;
-	*/
 
 	int m;
+	cout << "enter the number of elements in the array" << endl;
 	cin >> m;
-
-	int* a = NULL;
-	a = new int[m];
-
+	int* a = new int[m];
 	for (int i = 0; i < m; i++) {
+		cout << "enter element number " << i+1 << " of the array \n";
 		cin >> a[i];
-		cout << "a[i] " << a[i] << endl;
 	}
 
 
 
-	int n = 1;
-	int* b = NULL;
-	b = new int[n];
-
+	int n = 0;
+	int* b = new int[n];
 	bool c = RemoveDuplicates(a, m, b, n);
 
-	cout << " ////////////////////" << endl;
-	for (int i = 0; i < m; i++) {
-		cout << "a[i] " << a[i] << endl;
-	}
 
-
-	// printing b []
-	cout << " ////////////////////" << endl;
+	cout << "B =";
 	for (int i = 0; i < n; i++) {
-		cout << "b[i] " << b[i] << endl;
+		
+		cout << " " << b[i];
 	}
 
+
+
+	if (c) {
+		cout << endl << "Original array has duplicates" << endl;	
+	}
+	else {
+		cout << endl << "No duplicates in original array" << endl;
+	}
+	 
+
+	//delete [] a;
+	//delete [] b;
+	
 	return 0;
 }
-
 
